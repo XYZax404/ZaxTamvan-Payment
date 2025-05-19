@@ -5,21 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pembayaran via QRIS</title>
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #000000, #2e2e2e, #434343);
       color: white;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
     }
 
     .container {
       max-width: 400px;
-      margin: 60px auto 20px;
+      margin: 60px auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 20px;
@@ -98,9 +94,9 @@
     }
   </style>
 </head>
-<body oncontextmenu="return false">
+<body>
   <div class="container">
-    <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="© fearlessfiend66" class="logo" />
+    <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="Logo" class="logo" />
     <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
     <div class="desc">🗿</div>
     <img id="qrisImage" src="qris-zax.jpg" alt="QRIS" class="qris-img" />
@@ -124,16 +120,6 @@
       link.click();
       document.body.removeChild(link);
     }
-
-    // Proteksi: blok seleksi dan salin (kecuali gambar)
-    document.addEventListener("copy", e => e.preventDefault());
-    document.addEventListener("selectstart", e => e.preventDefault());
-    document.addEventListener("mousedown", e => {
-      if (e.target.tagName !== 'IMG') e.preventDefault();
-    });
-    document.addEventListener("touchstart", e => {
-      if (e.target.tagName !== 'IMG') e.preventDefault();
-    }, { passive: false });
   </script>
 </body>
 </html>
