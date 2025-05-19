@@ -69,6 +69,13 @@
       border: 6px solid white;
       border-radius: 12px;
       margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
     }
 
     .note {
@@ -110,9 +117,7 @@
     <div class="desc">🗿</div>
     <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
     <div class="note">Klik tombol di bawah untuk mengunduh gambar QRIS.</div>
-    <a href="https://ar-hosting.pages.dev/1747609852613.jpg" download="qris-zax.jpg">
-      <button class="btn-download">⬇ Unduh Gambar QRIS</button>
-    </a>
+    <button class="btn-download" onclick="downloadQRIS()">⬇ Unduh Gambar QRIS</button>
   </div>
 
   <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
@@ -124,7 +129,18 @@
   </audio>
 
   <script>
-    // Blok semua salin/copy manual
+    // Tombol unduh manual pakai JS
+    function downloadQRIS() {
+      const url = document.getElementById("qrisImage").src;
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'qris-zax.jpg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Proteksi: blok copy manual
     document.addEventListener("copy", e => e.preventDefault());
     document.addEventListener("selectstart", e => e.preventDefault());
     document.addEventListener("mousedown", e => {
@@ -135,4 +151,4 @@
     }, { passive: false });
   </script>
 </body>
-</html>
+  </html>
