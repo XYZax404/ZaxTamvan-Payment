@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pembayaran via QRIS</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -20,40 +24,30 @@
       user-select: none;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideIn {
-      0% { transform: translateY(-30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
-      70% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
     .container {
-      flex: 1;
+      width: 100%;
       max-width: 400px;
-      margin: auto;
       padding: 20px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       backdrop-filter: blur(10px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       text-align: center;
-      animation: slideIn 1s ease-in-out;
     }
 
     .logo {
       width: 100px;
       margin-bottom: 20px;
-      animation: bounce 2s infinite;
       border-radius: 50%;
+      animation: bounce 2s infinite;
     }
 
     @keyframes bounce {
@@ -65,20 +59,12 @@
       font-size: 24px;
       font-weight: bold;
       margin-bottom: 10px;
-      animation: fadeInText 1s ease-out 0.5s forwards;
-      opacity: 0;
     }
 
     .desc {
       font-size: 16px;
       margin-bottom: 30px;
-      color: #e0e0e0;
-      animation: fadeInText 1s ease-out 0.7s forwards;
-      opacity: 0;
-    }
-
-    @keyframes fadeInText {
-      to { opacity: 1; }
+      color: #cccccc;
     }
 
     .qris-img {
@@ -86,20 +72,17 @@
       max-width: 300px;
       border: 6px solid white;
       border-radius: 12px;
-      animation: pulse 2s infinite;
-      pointer-events: none; /* hanya gambar yang tidak bisa ditahan */
+      margin-bottom: 20px;
+      pointer-events: none; /* hanya gambar tidak bisa disentuh */
     }
 
     .note {
-      margin-top: 20px;
       font-size: 14px;
-      color: #cccccc;
-      animation: fadeInText 1s ease-out 1s forwards;
-      opacity: 0;
+      color: #aaaaaa;
+      margin-bottom: 20px;
     }
 
     .btn-download {
-      margin-top: 25px;
       background: linear-gradient(135deg, #444, #666);
       color: white;
       padding: 10px 20px;
@@ -125,14 +108,16 @@
   </style>
 </head>
 <body oncontextmenu="return false">
-  <div class="container">
-    <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="© fearlessfiend66" class="logo"/>
-    <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
-    <div class="desc">🗿</div>
-    <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
-    <div class="note">ꜱɪʟᴀᴋᴀɴ ꜱᴄᴀɴ ᴀᴛᴀᴜ ᴜɴᴅᴜʜ ɢᴀᴍʙᴀʀ Qʀɪꜱ ɪɴɪ.</div>
-    <button class="btn-download" onclick="autoDownloadQRIS()">⬇ ᴜɴᴅᴜʜ Qʀɪꜱ</button>
-  </div>
+  <main>
+    <div class="container">
+      <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="Logo" class="logo"/>
+      <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
+      <div class="desc">🗿</div>
+      <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
+      <div class="note">ꜱɪʟᴀᴋᴀɴ ꜱᴄᴀɴ ᴀᴛᴀᴜ ᴜɴᴅᴜʜ ɢᴀᴍʙᴀʀ Qʀɪꜱ ɪɴɪ.</div>
+      <button class="btn-download" onclick="autoDownloadQRIS()">⬇ Unduh Gambar QRIS</button>
+    </div>
+  </main>
 
   <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
 
@@ -144,15 +129,16 @@
 
   <script>
     function autoDownloadQRIS() {
-      const link = document.createElement('a');
-      link.href = document.getElementById('qrisImage').src;
-      link.download = 'qris-zax.jpg';
+      const image = document.getElementById("qrisImage");
+      const link = document.createElement("a");
+      link.href = image.src;
+      link.download = "qris-zax.jpg";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     }
 
-    // Blok seleksi teks & salin manual
+    // Blok seleksi dan salin
     document.addEventListener("copy", e => e.preventDefault());
     document.addEventListener("selectstart", e => e.preventDefault());
     document.addEventListener("mousedown", e => e.preventDefault());
