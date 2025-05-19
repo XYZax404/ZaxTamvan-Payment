@@ -12,29 +12,29 @@
     html, body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #000000, #2e2e2e, #434343);
       color: white;
-      display: flex;
-      flex-direction: column;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
     }
 
-    main {
-      flex: 1;
+    body {
+      display: block;
+    }
+
+    .wrapper {
+      min-height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .container {
-      width: 100%;
       max-width: 400px;
+      margin: 60px auto 20px;
       padding: 20px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 20px;
@@ -73,7 +73,7 @@
       border: 6px solid white;
       border-radius: 12px;
       margin-bottom: 20px;
-      pointer-events: none; /* hanya gambar tidak bisa disentuh */
+      pointer-events: none;
     }
 
     .note {
@@ -108,18 +108,20 @@
   </style>
 </head>
 <body oncontextmenu="return false">
-  <main>
+  <div class="wrapper">
     <div class="container">
       <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="Logo" class="logo"/>
       <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
       <div class="desc">🗿</div>
       <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
       <div class="note">ꜱɪʟᴀᴋᴀɴ ꜱᴄᴀɴ ᴀᴛᴀᴜ ᴜɴᴅᴜʜ ɢᴀᴍʙᴀʀ Qʀɪꜱ ɪɴɪ.</div>
-      <button class="btn-download" onclick="autoDownloadQRIS()">⬇ Unduh Gambar QRIS</button>
+      <a href="https://ar-hosting.pages.dev/1747609852613.jpg" download="qris-zax.jpg">
+        <button class="btn-download">⬇ Unduh Gambar QRIS</button>
+      </a>
     </div>
-  </main>
 
-  <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
+    <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
+  </div>
 
   <!-- Musik -->
   <audio autoplay loop hidden>
@@ -128,17 +130,7 @@
   </audio>
 
   <script>
-    function autoDownloadQRIS() {
-      const image = document.getElementById("qrisImage");
-      const link = document.createElement("a");
-      link.href = image.src;
-      link.download = "qris-zax.jpg";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    // Blok seleksi dan salin
+    // Proteksi tambahan
     document.addEventListener("copy", e => e.preventDefault());
     document.addEventListener("selectstart", e => e.preventDefault());
     document.addEventListener("mousedown", e => e.preventDefault());
