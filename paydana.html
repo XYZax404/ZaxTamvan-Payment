@@ -176,22 +176,23 @@
       }
     }, { passive: false });
 
-    function copyDANA() {
-      const number = document.getElementById("danaNumber").textContent.trim();
-      navigator.clipboard.writeText(number).then(() => {
-        const toast = document.getElementById("toast");
-        toast.className = "show";
-        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
-      }).catch(err => {
-        alert("Gagal menyalin: " + err);
-      });
-    }
-  </script>
+    <!-- SFX klik -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
 
-  <!-- Musik -->
-<audio autoplay loop hidden>
-  <source src="musik.mp3" type="audio/mpeg" />
-  Browser tidak mendukung audio.
-</audio>
+<!-- Toast & JS -->
+<div id="toast">Nomor disalin!</div>
+<script>
+  function copyDANA() {
+    const number = document.getElementById("danaNumber").textContent.trim();
+    navigator.clipboard.writeText(number).then(() => {
+      document.getElementById("clickSound").play();
+      const toast = document.getElementById("toast");
+      toast.className = "show";
+      setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
+    }).catch(err => {
+      alert("Gagal menyalin: " + err);
+    });
+  }
+</script>
 </body>
 </html>
