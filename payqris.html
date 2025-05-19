@@ -15,6 +15,14 @@
       color: white;
       overflow-x: hidden;
       animation: fadeIn 1s ease-in-out;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    body {
+      position: relative;
     }
 
     @keyframes fadeIn {
@@ -78,6 +86,7 @@
       border: 6px solid white;
       border-radius: 12px;
       animation: pulse 2s infinite;
+      pointer-events: none;
     }
 
     @keyframes pulse {
@@ -118,40 +127,16 @@
       text-align: center;
       font-size: 14px;
     }
-
-    footer a {
-      color: #00c2ff;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    footer .social-icons {
-      margin-top: 10px;
-    }
-
-    footer .social-icons a {
-      font-size: 18px;
-      margin: 0 10px;
-      color: #333333;
-    }
-
-    footer .social-icons a:hover {
-      color: #00c2ff;
-    }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false">
   <div class="container">
     <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="© fearlessfiend66" class="logo"/>
     <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
     <div class="desc">🗿</div>
-    <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="𝐙𝐚𝐱 𝟏𝟒𝟒𝐩" class="qris-img" />
-    <div class="note">ꜱɪʟᴀᴋᴀɴ ᴅᴏᴡɴʟᴏᴀᴅ ᴀᴛᴀᴜ ꜱᴄᴀɴ ᴋᴏᴅᴇ Qʀɪꜱ ɪɴɪ.</div>
-    <button class="btn-download" onclick="downloadQRIS()">⬇ Unduh Gambar QRIS</button>
+    <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
+    <div class="note">ꜱɪʟᴀᴋᴀɴ ꜱᴄᴀɴ ᴀᴛᴀᴜ ᴜɴᴅᴜʜ ɢᴀᴍʙᴀʀ Qʀɪꜱ ɪɴɪ.</div>
+    <button class="btn-download" onclick="autoDownloadQRIS()">𝗎𝗇𝖽𝗎𝗁 𝗊𝗋𝗂𝗌</button>
   </div>
 
   <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
@@ -163,7 +148,8 @@
   </audio>
 
   <script>
-    function downloadQRIS() {
+    // Auto-download saat tombol diklik
+    function autoDownloadQRIS() {
       const link = document.createElement('a');
       link.href = document.getElementById('qrisImage').src;
       link.download = 'qris-zax.jpg';
@@ -171,6 +157,12 @@
       link.click();
       document.body.removeChild(link);
     }
+
+    // Proteksi tambahan: blok seleksi teks & tahan lama
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("selectstart", e => e.preventDefault());
+    document.addEventListener("mousedown", e => e.preventDefault());
+    document.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
   </script>
 </body>
 </html>
