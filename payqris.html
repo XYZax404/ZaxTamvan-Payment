@@ -22,19 +22,15 @@
     }
 
     body {
-      display: block;
-    }
-
-    .wrapper {
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      min-height: 100vh;
     }
 
     .container {
       max-width: 400px;
-      margin: 60px auto 20px;
+      width: 100%;
+      margin: auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 20px;
@@ -73,7 +69,6 @@
       border: 6px solid white;
       border-radius: 12px;
       margin-bottom: 20px;
-      pointer-events: none;
     }
 
     .note {
@@ -104,24 +99,23 @@
       padding: 20px;
       text-align: center;
       font-size: 14px;
+      margin-top: auto;
     }
   </style>
 </head>
 <body oncontextmenu="return false">
-  <div class="wrapper">
-    <div class="container">
-      <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="Logo" class="logo"/>
-      <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
-      <div class="desc">🗿</div>
-      <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
-      <div class="note">ꜱɪʟᴀᴋᴀɴ ꜱᴄᴀɴ ᴀᴛᴀᴜ ᴜɴᴅᴜʜ ɢᴀᴍʙᴀʀ Qʀɪꜱ ɪɴɪ.</div>
-      <a href="https://ar-hosting.pages.dev/1747609852613.jpg" download="qris-zax.jpg">
-        <button class="btn-download">⬇ Unduh Gambar QRIS</button>
-      </a>
-    </div>
-
-    <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
+  <div class="container">
+    <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="Logo" class="logo"/>
+    <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
+    <div class="desc">🗿</div>
+    <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
+    <div class="note">Klik tombol di bawah untuk mengunduh gambar QRIS.</div>
+    <a href="https://ar-hosting.pages.dev/1747609852613.jpg" download="qris-zax.jpg">
+      <button class="btn-download">⬇ Unduh Gambar QRIS</button>
+    </a>
   </div>
+
+  <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
 
   <!-- Musik -->
   <audio autoplay loop hidden>
@@ -130,11 +124,15 @@
   </audio>
 
   <script>
-    // Proteksi tambahan
+    // Blok semua salin/copy manual
     document.addEventListener("copy", e => e.preventDefault());
     document.addEventListener("selectstart", e => e.preventDefault());
-    document.addEventListener("mousedown", e => e.preventDefault());
-    document.addEventListener("touchstart", e => e.preventDefault(), { passive: false });
+    document.addEventListener("mousedown", e => {
+      if (e.target.tagName !== 'IMG') e.preventDefault();
+    });
+    document.addEventListener("touchstart", e => {
+      if (e.target.tagName !== 'IMG') e.preventDefault();
+    }, { passive: false });
   </script>
 </body>
 </html>
