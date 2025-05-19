@@ -13,9 +13,6 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #1a1a1a, #2a2a2a, #3a3a3a);
       color: white;
-    }
-
-    body {
       display: flex;
       flex-direction: column;
     }
@@ -26,6 +23,7 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
+      flex-direction: column;
     }
 
     footer {
@@ -36,7 +34,6 @@
       font-size: 14px;
     }
 
-    /* Jika ingin override tombol, card, dsb langsung di sini */
     .payment-card {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 15px;
@@ -72,25 +69,37 @@
     .payment-option button:hover {
       background-color: #bbb;
     }
+
+    .play-music-btn {
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      background-color: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .play-music-btn:hover {
+      background-color: #666;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <button class="play-music-btn" onclick="playMusic()">▶ Mainkan Musik</button>
+
     <div class="payment-card">
-      <h2>𝗣𝗘𝗠𝗕𝗔𝗬𝗔𝗥𝗔𝗡</h2>
+      <h2>𝗛𝗔𝗟𝗔𝗠𝗔𝗡 𝗣𝗘𝗠𝗕𝗔𝗬𝗔𝗥𝗔𝗡</h2>
       <div class="payment-options">
         <div class="payment-option" id="qris-payment">
-          <img
-            src="https://files.catbox.moe/3is3vh.jpg"
-            alt="QRIS ZAX"
-          />
+          <img src="https://files.catbox.moe/3is3vh.jpg" alt="QRIS ZAX" />
           <button onclick="startQRISPayment()">ʙᴀʏᴀʀ ᴘᴀᴋᴀɪ Qʀɪꜱ</button>
         </div>
         <div class="payment-option" id="dana-payment">
-          <img
-            src="https://ar-hosting.pages.dev/1747613355881.jpg"
-            alt="DANA ZAX"
-          />
+          <img src="https://ar-hosting.pages.dev/1747613355881.jpg" alt="DANA ZAX" />
           <button onclick="startDanaPayment()">ʙᴀʏᴀʀ ᴘᴀᴋᴀɪ ᴅᴀɴᴀ</button>
         </div>
       </div>
@@ -99,12 +108,19 @@
 
   <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
 
+  <!-- Audio Musik -->
+  <audio id="bgm" loop>
+    <source src="musik.mp3" type="audio/mpeg" />
+    Browser tidak mendukung audio.
+  </audio>
+
   <script src="script.js"></script>
-  
-  <!-- Musik -->
-<audio autoplay loop muted hidden>
-  <source src="musik.mp3" type="audio/mpeg" />
-  Browser tidak mendukung audio.
-</audio>
+  <script>
+    function playMusic() {
+      const bgm = document.getElementById("bgm");
+      bgm.play();
+      document.querySelector(".play-music-btn").style.display = "none";
+    }
+  </script>
 </body>
 </html>
