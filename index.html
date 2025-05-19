@@ -3,8 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pediakuu Payment</title>
+  <title>𝗛𝗔𝗟𝗔𝗠𝗔𝗡 𝗣𝗘𝗠𝗕𝗔𝗬𝗔𝗥𝗔𝗡</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #2a2a2a, #3a3a3a);
+      color: white;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    /* Jika ingin override tombol, card, dsb langsung di sini */
+    .payment-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .payment-option img {
+      max-width: 200px;
+      border-radius: 10px;
+    }
+
+    .payment-option button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ddd;
+      color: #111;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .payment-option button:hover {
+      background-color: #bbb;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -14,20 +82,21 @@
         <div class="payment-option" id="qris-payment">
           <img
             src="https://files.catbox.moe/3is3vh.jpg"
-            alt="QRIS Zax 144p"
+            alt="QRIS ZAX"
           />
-          <button onclick="startQRISPayment()">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</button>
+          <button onclick="startQRISPayment()">ʙᴀʏᴀʀ ᴘᴀᴋᴀɪ Qʀɪꜱ</button>
         </div>
         <div class="payment-option" id="dana-payment">
           <img
-            src="https://files.catbox.moe/6jtvll.png"
-            alt="DANA Zax 144p"
+            src="https://ar-hosting.pages.dev/1747613355881.jpg"
+            alt="DANA ZAX"
           />
-          <button onclick="startDanaPayment()">ɴᴏᴍᴏʀ ᴅᴀɴᴀ</button>
+          <button onclick="startDanaPayment()">ʙᴀʏᴀʀ ᴘᴀᴋᴀɪ ᴅᴀɴᴀ</button>
         </div>
       </div>
     </div>
   </div>
+
   <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
 
   <script src="script.js"></script>
