@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pembayaran via QRIS</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #000000, #2e2e2e, #434343);
       color: white;
@@ -29,6 +35,7 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       text-align: center;
       animation: slideIn 1s ease-in-out;
+      flex: 1;
     }
 
     @keyframes slideIn {
@@ -36,12 +43,12 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
-   .logo {
-    width: 100px;
-    margin-bottom: 20px;
-    animation: bounce 2s infinite;
-    border-radius: 50%;
-}
+    .logo {
+      width: 100px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+      border-radius: 50%;
+    }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
@@ -99,7 +106,7 @@
     }
 
     footer a {
-      color: #00c2ff; /* Mengubah warna tautan menjadi biru */
+      color: #00c2ff;
       text-decoration: none;
       margin: 0 10px;
     }
@@ -120,13 +127,6 @@
 
     footer .social-icons a:hover {
       color: #00c2ff;
-    }
-
-
-    @keyframes fadeInFooter {
-      to {
-        opacity: 1;
-      }
     }
   </style>
 </head>
