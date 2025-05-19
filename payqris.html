@@ -6,23 +6,18 @@
   <title>Pembayaran via QRIS</title>
   <style>
     html, body {
-      height: 100%;
       margin: 0;
-      display: flex;
-      flex-direction: column;
+      padding: 0;
+      min-height: 100vh;
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #000000, #2e2e2e, #434343);
       color: white;
-      overflow-x: hidden;
-      animation: fadeIn 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-    }
-
-    body {
-      position: relative;
     }
 
     @keyframes fadeIn {
@@ -30,9 +25,21 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes slideIn {
+      0% { transform: translateY(-30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
+      70% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
     .container {
+      flex: 1;
       max-width: 400px;
-      margin: 60px auto;
+      margin: auto;
       padding: 20px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 20px;
@@ -40,12 +47,6 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       text-align: center;
       animation: slideIn 1s ease-in-out;
-      flex: 1;
-    }
-
-    @keyframes slideIn {
-      0% { transform: translateY(-30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
     }
 
     .logo {
@@ -86,13 +87,7 @@
       border: 6px solid white;
       border-radius: 12px;
       animation: pulse 2s infinite;
-      pointer-events: none;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
-      70% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+      pointer-events: none; /* hanya gambar yang tidak bisa ditahan */
     }
 
     .note {
@@ -111,7 +106,7 @@
       border-radius: 10px;
       font-weight: bold;
       font-size: 14px;
-      border: none;
+      border: 2px solid white;
       cursor: pointer;
       transition: background 0.3s ease;
     }
@@ -136,7 +131,7 @@
     <div class="desc">🗿</div>
     <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
     <div class="note">ꜱɪʟᴀᴋᴀɴ ꜱᴄᴀɴ ᴀᴛᴀᴜ ᴜɴᴅᴜʜ ɢᴀᴍʙᴀʀ Qʀɪꜱ ɪɴɪ.</div>
-    <button class="btn-download" onclick="autoDownloadQRIS()">𝗎𝗇𝖽𝗎𝗁 𝗊𝗋𝗂𝗌</button>
+    <button class="btn-download" onclick="autoDownloadQRIS()">⬇ ᴜɴᴅᴜʜ Qʀɪꜱ</button>
   </div>
 
   <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
@@ -148,7 +143,6 @@
   </audio>
 
   <script>
-    // Auto-download saat tombol diklik
     function autoDownloadQRIS() {
       const link = document.createElement('a');
       link.href = document.getElementById('qrisImage').src;
@@ -158,7 +152,7 @@
       document.body.removeChild(link);
     }
 
-    // Proteksi tambahan: blok seleksi teks & tahan lama
+    // Blok seleksi teks & salin manual
     document.addEventListener("copy", e => e.preventDefault());
     document.addEventListener("selectstart", e => e.preventDefault());
     document.addEventListener("mousedown", e => e.preventDefault());
