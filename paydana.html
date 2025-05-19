@@ -14,7 +14,7 @@
       padding: 0;
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1c1c1c, #2b2b2b, #3a3a3a);
+      background: linear-gradient(135deg, #1e1e1e, #2b2b2b, #3c3c3c);
       color: #f0f0f0;
       display: flex;
       flex-direction: column;
@@ -36,7 +36,7 @@
     .content-box {
       max-width: 400px;
       width: 100%;
-      padding: 20px;
+      padding: 25px;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
       backdrop-filter: blur(10px);
@@ -71,28 +71,26 @@
     .dana-number {
       font-size: 20px;
       font-weight: bold;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
       padding: 15px;
       border-radius: 10px;
-      display: inline-block;
       margin-bottom: 15px;
-      user-select: text;
-      -webkit-user-select: text;
+      user-select: none;
     }
 
     .copy-btn {
-      background: linear-gradient(135deg, #555555, #777777);
-      color: #ffffff;
+      background: linear-gradient(135deg, #444, #666);
+      color: white;
       border: none;
       padding: 10px 20px;
       border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
     }
 
     .copy-btn:hover {
-      background: linear-gradient(135deg, #777777, #999999);
+      background: linear-gradient(135deg, #666, #888);
     }
 
     .note {
@@ -102,8 +100,8 @@
     }
 
     footer {
-      background: linear-gradient(135deg, #111111, #2a2a2a);
-      color: #dddddd;
+      background: #111;
+      color: #ccc;
       padding: 20px;
       text-align: center;
       font-size: 14px;
@@ -112,95 +110,87 @@
     #toast {
       visibility: hidden;
       min-width: 160px;
-      background-color: #444;
-      color: #fff;
+      background-color: #00c2ff;
+      color: black;
       text-align: center;
-      border-radius: 5px;
-      padding: 10px;
+      border-radius: 8px;
+      padding: 10px 20px;
       position: fixed;
-      z-index: 1;
-      bottom: 30px;
+      z-index: 999;
+      top: 40px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 14px;
+      font-weight: bold;
+      opacity: 0;
     }
 
     #toast.show {
       visibility: visible;
-      animation: fadein 0.5s, fadeout 0.5s 2s;
+      opacity: 1;
+      animation: fadein 0.3s, fadeout 0.3s 2.5s;
     }
 
     @keyframes fadein {
-      from { bottom: 20px; opacity: 0; }
-      to { bottom: 30px; opacity: 1; }
+      from { top: 20px; opacity: 0; }
+      to { top: 40px; opacity: 1; }
     }
 
     @keyframes fadeout {
-      from { bottom: 30px; opacity: 1; }
-      to { bottom: 20px; opacity: 0; }
+      from { top: 40px; opacity: 1; }
+      to { top: 20px; opacity: 0; }
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false">
 
   <div class="container">
     <div class="content-box">
-      <img src="https://ar-hosting.pages.dev/1747613355881.jpg" alt="© fearlessfiend66" class="logo"/>
-      <div class="title">ᴛʀᴀɴꜱꜰᴇʀ ᴋᴇ ᴢᴀx ᴛᴀᴍᴠᴀɴ</div>
+      <img src="https://ar-hosting.pages.dev/1747613355881.jpg" alt="ZAX" class="logo"/>
+      <div class="title">TRANSFER KE ZAX TAMVAN</div>
       <div class="desc">Free Palestine 🇵🇸</div>
       <div class="dana-number" id="danaNumber">0852 3873 2641</div>
-      <br>
       <button class="copy-btn" onclick="copyDANA()">COPY NUMBER</button>
-      <div class="note">ᴘᴀꜱᴛɪᴋᴀɴ ɴᴏᴍɪɴᴀʟ ꜱᴜᴅᴀʜ ꜱᴇꜱᴜᴀɪ ꜱᴇʙᴇʟᴜᴍ ᴍᴇʟᴀᴋᴜᴋᴀɴ ᴘᴇᴍʙᴀʏᴀʀᴀɴ.</div>
+      <div class="note">Pastikan nominal sudah sesuai sebelum melakukan pembayaran.</div>
     </div>
   </div>
 
   <footer>&copy; 2025 fearlessfiend66 | All Rights Reserved</footer>
+
+  <!-- Toast -->
   <div id="toast">Nomor disalin!</div>
 
+  <!-- SFX -->
+  <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
   <script>
-    // Cegah klik kanan
-    document.addEventListener("contextmenu", function(e){
-      e.preventDefault();
-    });
+    function copyDANA() {
+      const number = document.getElementById("danaNumber").textContent.trim();
+      navigator.clipboard.writeText(number).then(() => {
+        // mainkan suara klik
+        const sfx = document.getElementById("clickSound");
+        if (sfx && sfx.play) sfx.play();
 
-    // Cegah copy manual
-    document.addEventListener("copy", function(e){
-      e.preventDefault();
-    });
+        // tampilkan toast
+        const toast = document.getElementById("toast");
+        toast.className = "show";
+        setTimeout(() => {
+          toast.className = toast.className.replace("show", "");
+        }, 2500);
+      }).catch(err => {
+        alert("Gagal menyalin: " + err);
+      });
+    }
 
-    // Cegah sentuhan lama (long press) kecuali tombol
-    document.addEventListener("touchstart", function(e) {
-      if (e.target.tagName !== "BUTTON") {
-        e.preventDefault();
-      }
+    // Cegah seleksi teks manual
+    document.addEventListener("copy", e => e.preventDefault());
+    document.addEventListener("selectstart", e => e.preventDefault());
+    document.addEventListener("mousedown", e => {
+      if (e.target.id === "danaNumber") e.preventDefault();
+    });
+    document.addEventListener("touchstart", e => {
+      if (e.target.id === "danaNumber") e.preventDefault();
     }, { passive: false });
-
-    <!-- Toast dan SFX -->
-<div id="toast">Nomor disalin!</div>
-
-<audio id="clickSound" src="click.mp3" preload="auto"></audio>
-
-<script>
-  function copyDANA() {
-    const number = document.getElementById("danaNumber").textContent.trim();
-
-    // Jalankan copy ke clipboard
-    navigator.clipboard.writeText(number).then(() => {
-      // Mainkan SFX klik jika file ditemukan
-      const clickSound = document.getElementById("clickSound");
-      if (clickSound) clickSound.play();
-
-      // Tampilkan notifikasi
-      const toast = document.getElementById("toast");
-      toast.className = "show";
-      setTimeout(() => {
-        toast.className = toast.className.replace("show", "");
-      }, 2500);
-    }).catch(err => {
-      alert("Gagal menyalin: " + err);
-    });
-  }
-</script>
+  </script>
 </body>
-</html>
+  </html>
