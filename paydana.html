@@ -18,6 +18,10 @@
       color: #f0f0f0;
       display: flex;
       flex-direction: column;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .container {
@@ -72,7 +76,8 @@
       border-radius: 10px;
       display: inline-block;
       margin-bottom: 15px;
-      user-select: all;
+      user-select: text;
+      -webkit-user-select: text;
     }
 
     .copy-btn {
@@ -104,7 +109,6 @@
       font-size: 14px;
     }
 
-    /* TOAST STYLE */
     #toast {
       visibility: hidden;
       min-width: 160px;
@@ -155,6 +159,23 @@
   <div id="toast">Nomor disalin!</div>
 
   <script>
+    // Cegah klik kanan
+    document.addEventListener("contextmenu", function(e){
+      e.preventDefault();
+    });
+
+    // Cegah copy manual
+    document.addEventListener("copy", function(e){
+      e.preventDefault();
+    });
+
+    // Cegah sentuhan lama (long press) kecuali tombol
+    document.addEventListener("touchstart", function(e) {
+      if (e.target.tagName !== "BUTTON") {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
     function copyDANA() {
       const number = document.getElementById("danaNumber").textContent.trim();
       navigator.clipboard.writeText(number).then(() => {
