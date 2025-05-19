@@ -112,11 +112,10 @@
 </head>
 <body oncontextmenu="return false">
   <div class="container">
-    <img src="https://ar-hosting.pages.dev/1747611980429.png" alt="Logo" class="logo"/>
+    <img src="qris-zax.jpg" alt="QRIS" class="qris-img" id="qrisImage" />
     <div class="title">Qʀɪꜱ ᴀʟʟ ᴘᴀʏᴍᴇɴᴛ</div>
-    <div class="desc">🗿</div>
-    <img id="qrisImage" src="https://ar-hosting.pages.dev/1747609852613.jpg" alt="QRIS" class="qris-img" />
-    <div class="note">Klik tombol di bawah untuk mengunduh gambar QRIS.</div>
+    <div class="desc">Scan untuk bayar dengan Gopay, DANA, atau OVO</div>
+    <div class="note">Klik tombol di bawah untuk mengunduh gambar QRIS ini.</div>
     <button class="btn-download" onclick="downloadQRIS()">⬇ Unduh Gambar QRIS</button>
   </div>
 
@@ -129,18 +128,16 @@
   </audio>
 
   <script>
-    // Tombol unduh manual pakai JS
     function downloadQRIS() {
-      const url = document.getElementById("qrisImage").src;
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'qris-zax.jpg';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      const link = document.createElement('a');
+      link.href = 'qris-zax.jpg';
+      link.download = 'qris-zax.jpg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
-    // Proteksi: blok copy manual
+    // Proteksi: cegah salin/copy
     document.addEventListener("copy", e => e.preventDefault());
     document.addEventListener("selectstart", e => e.preventDefault());
     document.addEventListener("mousedown", e => {
@@ -151,4 +148,4 @@
     }, { passive: false });
   </script>
 </body>
-  </html>
+    </html>
